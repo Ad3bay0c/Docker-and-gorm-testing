@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/Ad3bay0c/dockersAndGormTesting/controllers"
+	"github.com/Ad3bay0c/dockersAndGormTesting/db"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"log"
@@ -15,10 +17,12 @@ func main() {
 		log.Printf("Error: %v", err.Error())
 	}
 	router := gin.Default()
+	DB := &db.PostgreSql{}
+	DB.DbConnection()
+	app := &controllers.Application{DB: DB}
 
-	router.GET("/", func(context *gin.Context) {
-		context.JSON(200, gin.H{"Message": "Working Perfectly"})
-	})
+	router.GET("/", app.Index)
+
 	PORT := fmt.Sprintf(":%s",os.Getenv("PORT"))
 	if PORT == ":" {
 		PORT += "8080"
@@ -27,7 +31,7 @@ func main() {
 		Addr: PORT,
 		Handler: router,
 	}
-	//db.DbConnection()
+
 	log.Println("Working perfectly well")
 	err = server.ListenAndServe()
 	if err != nil {
