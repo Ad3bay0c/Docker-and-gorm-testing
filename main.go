@@ -23,12 +23,12 @@ func main() {
 
 	router.GET("/", app.Index)
 
-	PORT := fmt.Sprintf(":%s",os.Getenv("PORT"))
+	PORT := fmt.Sprintf(":%s", os.Getenv("PORT"))
 	if PORT == ":" {
 		PORT += "8080"
 	}
 	server := &http.Server{
-		Addr: PORT,
+		Addr:    PORT,
 		Handler: router,
 	}
 

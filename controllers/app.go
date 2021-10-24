@@ -6,7 +6,7 @@ import (
 )
 
 type Application struct {
-	DB  *db.PostgreSql
+	DB *db.PostgreSql
 }
 
 func (app *Application) Index(c *gin.Context) {
