@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/Ad3bay0c/dockersAndGormTesting/db"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"log"
@@ -28,7 +27,7 @@ func main() {
 		Addr: PORT,
 		Handler: router,
 	}
-	db.DbConnection()
+	//db.DbConnection()
 	log.Println("Working perfectly well")
 	err = server.ListenAndServe()
 	if err != nil {
