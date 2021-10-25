@@ -13,6 +13,7 @@ type User struct {
 	Author    Author    `gorm:"embedded"`
 	CreatedAt time.Time `gorm:"constraint:OnUpdate:CASCADE,onDelete:SET NULL"`
 	updatedAt time.Time `gorm:"constraint:OnUpdate:CASCADE,onDelete:SET NULL"`
+	Books		[]Books `gorm:"many2many:user_books;"`
 }
 
 type Author struct {
