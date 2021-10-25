@@ -22,4 +22,3 @@ func (pq *PostgreSql) DbConnection() {
 	}
 	pq.Db = db
 }
-

@@ -37,7 +37,6 @@ func main() {
 	//DB.Db.Model(&models.User{}).Where("id = ?", "1234resasd").Update("first_name", "Adebayo3")
 	app := &controllers.Application{DB: DB}
 
-
 	router.GET("/", app.Index)
 	router.GET("/home", app.Index)
 
