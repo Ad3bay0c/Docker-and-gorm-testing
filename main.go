@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/Ad3bay0c/dockersAndGormTesting/controllers"
 	"github.com/Ad3bay0c/dockersAndGormTesting/db"
+	"github.com/Ad3bay0c/dockersAndGormTesting/models"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"log"
@@ -19,9 +20,26 @@ func main() {
 	router := gin.Default()
 	DB := &db.PostgreSql{}
 	DB.DbConnection()
+	DB.Db.AutoMigrate(&models.Books{})
+
+	//DB.Db.Create(&models.User{
+	//	ID:        "1234resasd",
+	//	FirstName: "Adebayo1",
+	//	LastName:  "Adebayo",
+	//	Author:    models.Author{Email: "aclontonade", Password: "okay"},
+	//	CreatedAt: time.Time{},
+	//})
+	user := &models.User{}
+	DB.Db.Where("password = ?", "okay").Or("1 = 1").Limit(1).First(&user)
+
+	user.FirstName = "Clinton"
+	DB.Db.Save(&user)
+	DB.Db.Model(&models.User{}).Where("id = ?", "1234resasd").Update("first_name", "Adebayo3")
 	app := &controllers.Application{DB: DB}
 
+
 	router.GET("/", app.Index)
+	router.GET("/home", app.Index)
 
 	PORT := fmt.Sprintf(":%s", os.Getenv("PORT"))
 	if PORT == ":" {
