@@ -23,6 +23,3 @@ func (pq *PostgreSql) DbConnection() {
 	pq.Db = db
 }
 
-func (pq *PostgreSql) AutoMigrate() {
-
-}
