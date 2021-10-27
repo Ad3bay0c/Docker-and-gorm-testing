@@ -22,12 +22,11 @@ func main() {
 	DB.DbConnection()
 	DB.Db.AutoMigrate(&models.User{})
 
-	//DB.Db.Create(&models.User{
-	//	FirstName: "Adebayo",
-	//	LastName:  "Adebayo",
-	//	Author:    models.Author{Email: "aclonton", Password: "okay"},
-	//	CreatedAt: time.Time{},
-	//})
+	DB.Db.Create(&models.User{
+		FirstName: "Adebayo",
+		LastName:  "Adebayo",
+		Author:    models.Author{Email: "aclonton", Password: "okay"},
+	})
 	//user := &models.User{}
 	//DB.Db.Where("password = ?", "okay").Or("1 = 1").Limit(1).First(&user)
 	//
