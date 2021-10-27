@@ -31,7 +31,8 @@ func (user *User) BeforeCreate(scope *gorm.DB) error {
 	user.ID = uuid.NewString()
 	return nil
 
-	// you can also set ID before any User create to table in database;
+	// you can also set ID before any User create to table in database by doing this;
+
 	//scope.Statement.SetColumn("ID", uuid.NewString())
 	//return nil
 }
